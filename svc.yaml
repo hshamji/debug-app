@@ -1,0 +1,38 @@
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   labels:
+#     app: debug-svc
+#   name: testbed-d-debug-app
+#   namespace: barista-testbed-d
+# spec:
+#   clusterIP: None
+#   clusterIPs:
+#   - None
+#   ipFamilies:
+#   - IPv4
+#   ipFamilyPolicy: SingleStack
+#   ports:
+#   - name: http-port
+#     port: 10002
+#     protocol: TCP
+#     targetPort: 80
+#   selector:
+#     run: debug-app
+#   sessionAffinity: None
+#   type: ClusterIP
+# status:
+#   loadBalancer: {}
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: debug-app
+  namespace: barista-testbed-d
+spec:
+  selector:
+    run: debug-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 10002
